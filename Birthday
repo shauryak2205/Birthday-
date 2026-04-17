@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Suzieee</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Floating balloons */
+.balloon {
+    position: absolute;
+    bottom: -100px;
+    font-size: 30px;
+    animation: floatUp 6s infinite;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-120vh); opacity: 0; }
+}
+
+.container {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    max-width: 350px;
+    width: 90%;
+    text-align: center;
+    animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+h1 {
+    color: #ff4081;
+}
+
+button {
+    padding: 12px 20px;
+    border: none;
+    background: #ff4081;
+    color: white;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #e73370;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Cake animation */
+.cake {
+    font-size: 80px;
+    animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+/* Confetti */
+.confetti {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: red;
+    top: 0;
+    animation: fall 3s linear infinite;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Balloons -->
+<div class="balloon" style="left:10%;">🎈</div>
+<div class="balloon" style="left:30%; animation-delay:1s;">🎈</div>
+<div class="balloon" style="left:50%; animation-delay:2s;">🎈</div>
+<div class="balloon" style="left:70%; animation-delay:3s;">🎈</div>
+<div class="balloon" style="left:90%; animation-delay:4s;">🎈</div>
+
+<div class="container" id="page1">
+    <h1>🎉 Happy Birthday Suzieee 🎉</h1>
+    <p>Wishing you a day full of happiness and joy!</p>
+    <button onclick="nextPage()">Next ➡️</button>
+</div>
+
+<div class="container hidden" id="page2">
+    <h1>🎂 Surprise 🎂</h1>
+    <div class="cake">🎂</div>
+    <p>Have an amazing year ahead!</p>
+</div>
+
+<audio id="song">
+    <source src="https://www2.cs.uic.edu/~i101/SoundFiles/HappyBirthday.mid" type="audio/midi">
+</audio>
+
+<script>
+function nextPage() {
+    document.getElementById("page1").classList.add("hidden");
+    document.getElementById("page2").classList.remove("hidden");
+    document.getElementById("song").play();
+    createConfetti();
+}
+
+function createConfetti() {
+    for(let i=0;i<50;i++){
+        let conf = document.createElement("div");
+        conf.className = "confetti";
+        conf.style.left = Math.random()*100 + "vw";
+        conf.style.background = "hsl(" + Math.random()*360 + ",100%,50%)";
+        conf.style.animationDuration = (Math.random()*2+2) + "s";
+        document.body.appendChild(conf);
+    }
+}
+</script>
+
+</body>
+</html>
